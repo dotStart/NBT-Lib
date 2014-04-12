@@ -1,5 +1,5 @@
-import com.evilco.mc.nbt.stream.NBTInputStream;
-import com.evilco.mc.nbt.stream.NBTOutputStream;
+import com.evilco.mc.nbt.stream.NbtInputStream;
+import com.evilco.mc.nbt.stream.NbtOutputStream;
 import com.evilco.mc.nbt.tag.*;
 import org.junit.Assert;
 import org.junit.Test;
@@ -49,14 +49,14 @@ public class ReadWriteTest {
 
 		// create output stream
 		ByteArrayOutputStream outputStream = new ByteArrayOutputStream ();
-		NBTOutputStream nbtOutputStream = new NBTOutputStream (outputStream);
+		NbtOutputStream nbtOutputStream = new NbtOutputStream (outputStream);
 
 		// write data
 		nbtOutputStream.write (compound);
 
 		// create input stream
 		ByteArrayInputStream inputStream = new ByteArrayInputStream (outputStream.toByteArray ());
-		NBTInputStream nbtInputStream = new NBTInputStream (inputStream);
+		NbtInputStream nbtInputStream = new NbtInputStream (inputStream);
 
 		// read data
 		ITag tag = nbtInputStream.readTag ();

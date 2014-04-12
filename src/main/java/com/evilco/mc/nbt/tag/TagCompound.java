@@ -1,7 +1,7 @@
 package com.evilco.mc.nbt.tag;
 
-import com.evilco.mc.nbt.stream.NBTInputStream;
-import com.evilco.mc.nbt.stream.NBTOutputStream;
+import com.evilco.mc.nbt.stream.NbtInputStream;
+import com.evilco.mc.nbt.stream.NbtOutputStream;
 import com.google.common.base.Preconditions;
 import com.google.common.collect.ImmutableMap;
 
@@ -36,7 +36,7 @@ public class TagCompound extends AbstractTag implements INamedTagContainer {
 	 * @param inputStream
 	 * @param anonymous
 	 */
-	public TagCompound (@Nonnull NBTInputStream inputStream, boolean anonymous) throws IOException {
+	public TagCompound (@Nonnull NbtInputStream inputStream, boolean anonymous) throws IOException {
 		super (inputStream, anonymous);
 
 		// create map
@@ -135,7 +135,7 @@ public class TagCompound extends AbstractTag implements INamedTagContainer {
 	 * {@inheritDoc}
 	 */
 	@Override
-	public void write (NBTOutputStream outputStream, boolean anonymous) throws IOException {
+	public void write (NbtOutputStream outputStream, boolean anonymous) throws IOException {
 		super.write (outputStream, anonymous);
 
 		// write tags

@@ -1,7 +1,7 @@
 package com.evilco.mc.nbt.tag;
 
-import com.evilco.mc.nbt.stream.NBTInputStream;
-import com.evilco.mc.nbt.stream.NBTOutputStream;
+import com.evilco.mc.nbt.stream.NbtInputStream;
+import com.evilco.mc.nbt.stream.NbtOutputStream;
 import com.google.common.base.Preconditions;
 
 import javax.annotation.Nonnull;
@@ -38,7 +38,7 @@ public abstract class AbstractTag implements ITag {
 	 * @param anonymous
 	 * @throws java.io.IOException
 	 */
-	public AbstractTag (@Nonnull NBTInputStream inputStream, boolean anonymous) throws IOException {
+	public AbstractTag (@Nonnull NbtInputStream inputStream, boolean anonymous) throws IOException {
 		// validate arguments
 		Preconditions.checkNotNull (inputStream, "inputStream");
 
@@ -123,7 +123,7 @@ public abstract class AbstractTag implements ITag {
 	 * {@inheritDoc}
 	 */
 	@Override
-	public void write (NBTOutputStream outputStream, boolean anonymous) throws IOException {
+	public void write (NbtOutputStream outputStream, boolean anonymous) throws IOException {
 		// write name
 		if (!anonymous) {
 			// get name

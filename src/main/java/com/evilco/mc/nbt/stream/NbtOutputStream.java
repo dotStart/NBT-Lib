@@ -10,13 +10,13 @@ import java.io.OutputStream;
  * @auhtor Johannes Donath <johannesd@evil-co.com>
  * @copyright Copyright (C) 2014 Evil-Co <http://www.evil-co.org>
  */
-public class NBTOutputStream extends DataOutputStream {
+public class NbtOutputStream extends DataOutputStream {
 
 	/**
-	 * Constructs a new NBTOutputStream.
+	 * Constructs a new NbtOutputStream.
 	 * @param out
 	 */
-	public NBTOutputStream (OutputStream out) {
+	public NbtOutputStream (OutputStream out) {
 		super (out);
 	}
 

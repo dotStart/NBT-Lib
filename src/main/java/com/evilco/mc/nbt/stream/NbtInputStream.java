@@ -12,13 +12,13 @@ import java.lang.reflect.Constructor;
  * @auhtor Johannes Donath <johannesd@evil-co.com>
  * @copyright Copyright (C) 2014 Evil-Co <http://www.evil-co.org>
  */
-public class NBTInputStream extends DataInputStream {
+public class NbtInputStream extends DataInputStream {
 
 	/**
-	 * Constructs a new NBTInputStream.
+	 * Constructs a new NbtInputStream.
 	 * @param in
 	 */
-	public NBTInputStream (InputStream in) {
+	public NbtInputStream (InputStream in) {
 		super (in);
 	}
 
@@ -56,7 +56,7 @@ public class NBTInputStream extends DataInputStream {
 		Constructor<? extends ITag> constructor = null;
 
 		try {
-			constructor = type.tagType.getConstructor (NBTInputStream.class, boolean.class);
+			constructor = type.tagType.getConstructor (NbtInputStream.class, boolean.class);
 		} catch (NoSuchMethodException ex) {
 			throw new IOException ("Invalid NBT implementation state: Type " + type.tagType.getName () + " has no de-serialization constructor.");
 		}

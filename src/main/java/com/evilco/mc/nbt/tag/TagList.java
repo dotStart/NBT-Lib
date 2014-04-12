@@ -1,7 +1,7 @@
 package com.evilco.mc.nbt.tag;
 
-import com.evilco.mc.nbt.stream.NBTInputStream;
-import com.evilco.mc.nbt.stream.NBTOutputStream;
+import com.evilco.mc.nbt.stream.NbtInputStream;
+import com.evilco.mc.nbt.stream.NbtOutputStream;
 import com.google.common.base.Preconditions;
 import com.google.common.collect.ImmutableList;
 
@@ -50,7 +50,7 @@ public class TagList extends AbstractTag implements IAnonymousTagContainer {
 	 * @param anonymous
 	 * @throws IOException
 	 */
-	public TagList (@Nonnull NBTInputStream inputStream, boolean anonymous) throws IOException {
+	public TagList (@Nonnull NbtInputStream inputStream, boolean anonymous) throws IOException {
 		super (inputStream, anonymous);
 
 		// create tagList
@@ -118,7 +118,7 @@ public class TagList extends AbstractTag implements IAnonymousTagContainer {
 	 * {@inheritDoc}
 	 */
 	@Override
-	public void write (NBTOutputStream outputStream, boolean anonymous) throws IOException {
+	public void write (NbtOutputStream outputStream, boolean anonymous) throws IOException {
 		super.write (outputStream, anonymous);
 
 		// write type

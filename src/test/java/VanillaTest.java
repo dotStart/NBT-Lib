@@ -1,5 +1,5 @@
+import com.evilco.mc.nbt.stream.NbtInputStream;
 import com.evilco.mc.nbt.tag.ITag;
-import com.evilco.mc.nbt.stream.NBTInputStream;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -22,7 +22,7 @@ public class VanillaTest {
 	@Test
 	public void testGzip () throws IOException {
 		// create NBT stream
-		NBTInputStream inputStream = new NBTInputStream (new GZIPInputStream (this.getClass ().getResourceAsStream ("/big.nbt")));
+		NbtInputStream inputStream = new NbtInputStream (new GZIPInputStream (this.getClass ().getResourceAsStream ("/big.nbt")));
 
 		// read NBT
 		ITag tag = inputStream.readTag ();
@@ -38,7 +38,7 @@ public class VanillaTest {
 	@Test
 	public void testHelloWorld () throws IOException {
 		// create NBT stream
-		NBTInputStream inputStream = new NBTInputStream (this.getClass ().getResourceAsStream ("/helloWorld.nbt"));
+		NbtInputStream inputStream = new NbtInputStream (this.getClass ().getResourceAsStream ("/helloWorld.nbt"));
 
 		// read NBT
 		ITag tag = inputStream.readTag ();
@@ -53,7 +53,7 @@ public class VanillaTest {
 	@Test
 	public void testLoadServers () throws IOException {
 		// create NBT stream
-		NBTInputStream inputStream = new NBTInputStream (this.getClass ().getResourceAsStream ("/servers.nbt"));
+		NbtInputStream inputStream = new NbtInputStream (this.getClass ().getResourceAsStream ("/servers.nbt"));
 
 		// read NBT
 		ITag tag = inputStream.readTag ();

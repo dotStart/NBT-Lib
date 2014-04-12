@@ -1,6 +1,6 @@
 package com.evilco.mc.nbt.tag;
 
-import com.evilco.mc.nbt.stream.NBTOutputStream;
+import com.evilco.mc.nbt.stream.NbtOutputStream;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
@@ -59,5 +59,5 @@ public interface ITag {
 	 * @param outputStream
 	 * @param anonymous
 	 */
-	public void write (NBTOutputStream outputStream, boolean anonymous) throws IOException;
+	public void write (NbtOutputStream outputStream, boolean anonymous) throws IOException;
 }

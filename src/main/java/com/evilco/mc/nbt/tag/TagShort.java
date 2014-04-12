@@ -1,7 +1,7 @@
 package com.evilco.mc.nbt.tag;
 
-import com.evilco.mc.nbt.stream.NBTInputStream;
-import com.evilco.mc.nbt.stream.NBTOutputStream;
+import com.evilco.mc.nbt.stream.NbtInputStream;
+import com.evilco.mc.nbt.stream.NbtOutputStream;
 
 import javax.annotation.Nonnull;
 import java.io.IOException;
@@ -33,7 +33,7 @@ public class TagShort extends AbstractTag {
 	 * @param anonymous
 	 * @throws IOException
 	 */
-	public TagShort (@Nonnull NBTInputStream inputStream, boolean anonymous) throws IOException {
+	public TagShort (@Nonnull NbtInputStream inputStream, boolean anonymous) throws IOException {
 		super (inputStream, anonymous);
 
 		// read value
@@ -68,7 +68,7 @@ public class TagShort extends AbstractTag {
 	 * {@inheritDoc}
 	 */
 	@Override
-	public void write (NBTOutputStream outputStream, boolean anonymous) throws IOException {
+	public void write (NbtOutputStream outputStream, boolean anonymous) throws IOException {
 		super.write (outputStream, anonymous);
 
 		// write value

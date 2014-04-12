@@ -1,7 +1,7 @@
 package com.evilco.mc.nbt.tag;
 
-import com.evilco.mc.nbt.stream.NBTInputStream;
-import com.evilco.mc.nbt.stream.NBTOutputStream;
+import com.evilco.mc.nbt.stream.NbtInputStream;
+import com.evilco.mc.nbt.stream.NbtOutputStream;
 import com.google.common.base.Preconditions;
 
 import javax.annotation.Nonnull;
@@ -34,7 +34,7 @@ public class TagByteArray extends AbstractTag {
 	 * @param anonymous
 	 * @throws IOException
 	 */
-	public TagByteArray (@Nonnull NBTInputStream inputStream, boolean anonymous) throws IOException {
+	public TagByteArray (@Nonnull NbtInputStream inputStream, boolean anonymous) throws IOException {
 		super (inputStream, anonymous);
 
 		// read size
@@ -80,7 +80,7 @@ public class TagByteArray extends AbstractTag {
 	 * {@inheritDoc}
 	 */
 	@Override
-	public void write (NBTOutputStream outputStream, boolean anonymous) throws IOException {
+	public void write (NbtOutputStream outputStream, boolean anonymous) throws IOException {
 		super.write (outputStream, anonymous);
 
 		// write size
