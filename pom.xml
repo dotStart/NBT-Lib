@@ -1,0 +1,198 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<!-- Artifact Information -->
+	<groupId>com.evilco.mc</groupId>
+	<artifactId>nbt</artifactId>
+	<version>1.0-SNAPSHOT</version>
+
+	<!-- Artifact Metadata -->
+	<name>Minecraft NBT</name>
+	<description>Provides a basic NBT implementation.</description>
+	<inceptionYear>2014</inceptionYear>
+
+	<!-- License Information -->
+	<licenses>
+		<license>
+			<name>Apache 2.0</name>
+			<url>LICENSE</url>
+			<distribution>repo</distribution>
+		</license>
+	</licenses>
+
+	<!-- Contributor Information -->
+	<organization>
+		<name>Evil-Co</name>
+		<url>http://www.evil-co.org</url>
+	</organization>
+
+	<developers>
+		<developer>
+			<name>Johannes "Akkarin" Donath</name>
+			<email>johannesd@evil-co.com</email>
+			<url>http://www.johannes-donath.com</url>
+
+			<organization>Evil-Co</organization>
+			<organizationUrl>http://www.evil-co.com</organizationUrl>
+
+			<roles>
+				<role>Project Maintainer</role>
+				<role>Software Engineer</role>
+			</roles>
+		</developer>
+	</developers>
+
+	<!-- Issue Reporting -->
+	<issueManagement>
+		<url>https://evilco.atlassian.net/browse/MCFP</url>
+		<system>JIRA</system>
+	</issueManagement>
+
+	<!-- CI Management -->
+	<ciManagement>
+		<url>https://evilco.atlassian.net/builds/browse/MCFP</url>
+		<system>Bamboo</system>
+	</ciManagement>
+
+	<!-- SCM -->
+	<scm>
+		<url>https://github.com/Evil-Co/NBT-Lib</url>
+		<connection>scm:git:git://github.com/Evil-Co/NBT-Lib.git</connection>
+		<developerConnection>scm:git:git://git@github.com/Evil-Co/NBT-Lib.git</developerConnection>
+		<tag>master</tag>
+	</scm>
+
+	<!-- Distribution -->
+	<distributionManagement>
+		<repository>
+			<id>evil-co</id>
+			<url>http://nexus.evil-co.org/content/repositories/free/</url>
+		</repository>
+
+		<snapshotRepository>
+			<id>evil-co</id>
+			<url>http://nexus.evil-co.org/content/repositories/free-snapshots/</url>
+		</snapshotRepository>
+	</distributionManagement>
+
+	<!-- Dependencies -->
+	<dependencies>
+		<!-- Apache Commons (IO) -->
+		<dependency>
+			<groupId>commons-io</groupId>
+			<artifactId>commons-io</artifactId>
+			<version>2.4</version>
+		</dependency>
+
+		<!-- Guava -->
+		<dependency>
+			<groupId>com.google.guava</groupId>
+			<artifactId>guava</artifactId>
+			<version>16.0.1</version>
+		</dependency>
+
+		<!-- Java Annotations -->
+		<dependency>
+			<groupId>com.google.code.findbugs</groupId>
+			<artifactId>jsr305</artifactId>
+			<version>2.0.3</version>
+		</dependency>
+
+		<!-- junit -->
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>4.11</version>
+			<scope>test</scope>
+		</dependency>
+
+		<!-- Mockito -->
+		<dependency>
+			<groupId>org.mockito</groupId>
+			<artifactId>mockito-all</artifactId>
+			<version>1.9.5</version>
+			<scope>test</scope>
+		</dependency>
+	</dependencies>
+
+	<!-- Build Properties -->
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+
+		<!-- Signer Settings -->
+		<sign.keyStore>/opt/evilco/keystore</sign.keyStore>
+		<sign.password>changeit</sign.password>
+		<sign.alias>evilco-free</sign.alias>
+	</properties>
+
+	<!-- Build Settings -->
+	<build>
+		<!-- Default Setup -->
+		<finalName>${project.artifactId}.${project.groupId}-${project.version}</finalName>
+		<defaultGoal>clean install</defaultGoal>
+
+		<sourceDirectory>${project.basedir}/src/main/java</sourceDirectory>
+		<testSourceDirectory>${project.basedir}/src/test/java</testSourceDirectory>
+
+		<!-- Resources -->
+		<resources>
+			<!-- License -->
+			<resource>
+				<directory>${project.basedir}</directory>
+				<targetPath>.</targetPath>
+				<filtering>false</filtering>
+
+				<includes>
+					<include>LICENSE</include>
+				</includes>
+			</resource>
+		</resources>
+
+		<!-- Test Resources -->
+		<testResources>
+			<testResource>
+				<directory>${project.basedir}/src/test/resources</directory>
+				<targetPath>.</targetPath>
+				<filtering>false</filtering>
+
+				<includes>
+					<include>*.nbt</include>
+				</includes>
+			</testResource>
+		</testResources>
+
+		<!-- Build Plugins -->
+		<plugins>
+			<!-- Compiler -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>3.1</version>
+
+				<configuration>
+					<source>1.7</source>
+					<target>1.7</target>
+				</configuration>
+			</plugin>
+
+			<!-- JAR -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-jar-plugin</artifactId>
+				<version>2.4</version>
+
+				<configuration>
+					<archive>
+						<addMavenDescriptor>true</addMavenDescriptor>
+
+						<manifest>
+							<addDefaultSpecificationEntries>true</addDefaultSpecificationEntries>
+							<addDefaultImplementationEntries>true</addDefaultImplementationEntries>
+						</manifest>
+					</archive>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+</project>
