@@ -48,7 +48,23 @@ public class VanillaTest {
 	}
 
 	/**
-	 * Tries to load a vanilla servers.dat
+	 * Tries to load a vanilla level.dat.
+	 * @throws IOException
+	 */
+	@Test
+	public void testLoadLevel () throws IOException {
+		// create NBT stream
+		NbtInputStream inputStream = new NbtInputStream (new GZIPInputStream (this.getClass ().getResourceAsStream ("/level.nbt")));
+
+		// read NBT
+		ITag tag = inputStream.readTag ();
+
+		// verify tag
+		Assert.assertNotNull (tag);
+	}
+
+	/**
+	 * Tries to load a vanilla servers.dat.
 	 */
 	@Test
 	public void testLoadServers () throws IOException {
