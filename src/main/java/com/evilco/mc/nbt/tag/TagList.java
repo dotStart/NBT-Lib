@@ -62,8 +62,8 @@ public class TagList extends AbstractTag implements IAnonymousTagContainer {
 		// get type
 		TagType tagType = TagType.valueOf (type);
 
-		// verify
-		if (tagType == TagType.END) throw new IOException ("Malformed NBT data: Unexpected list type: TAG_END.");
+		// (no data, skip)
+		if (tagType == TagType.END) return;
 
 		// read size
 		int size = inputStream.readInt ();
@@ -122,7 +122,7 @@ public class TagList extends AbstractTag implements IAnonymousTagContainer {
 		super.write (outputStream, anonymous);
 
 		// write type
-		outputStream.writeByte ((this.tagList.size () > 0 ? this.tagList.get (0).getTagID () : TagType.COMPOUND.typeID));
+		outputStream.writeByte ((this.tagList.size () > 0 ? this.tagList.get (0).getTagID () : TagType.END.typeID));
 
 		// write size
 		outputStream.writeInt (this.tagList.size ());
