@@ -1,11 +1,10 @@
-package com.evilco.mc.nbt;
+package com.evilco.mc.nbt.tag;
 
 import com.evilco.mc.nbt.stream.NBTOutputStream;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import java.io.IOException;
-import java.nio.ByteBuffer;
 import java.nio.charset.Charset;
 
 /**

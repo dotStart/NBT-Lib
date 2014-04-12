@@ -1,4 +1,4 @@
-package com.evilco.mc.nbt;
+package com.evilco.mc.nbt.tag;
 
 import com.evilco.mc.nbt.stream.NBTInputStream;
 import com.evilco.mc.nbt.stream.NBTOutputStream;
@@ -7,7 +7,6 @@ import com.google.common.collect.ImmutableList;
 
 import javax.annotation.Nonnull;
 import java.io.IOException;
-import java.lang.reflect.Constructor;
 import java.util.ArrayList;
 import java.util.List;
 

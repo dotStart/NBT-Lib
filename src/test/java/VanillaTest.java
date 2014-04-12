@@ -1,4 +1,4 @@
-import com.evilco.mc.nbt.ITag;
+import com.evilco.mc.nbt.tag.ITag;
 import com.evilco.mc.nbt.stream.NBTInputStream;
 import org.junit.Assert;
 import org.junit.Test;

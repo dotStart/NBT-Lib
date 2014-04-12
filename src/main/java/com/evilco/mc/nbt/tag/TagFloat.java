@@ -1,8 +1,7 @@
-package com.evilco.mc.nbt;
+package com.evilco.mc.nbt.tag;
 
 import com.evilco.mc.nbt.stream.NBTInputStream;
 import com.evilco.mc.nbt.stream.NBTOutputStream;
-import com.google.common.base.Preconditions;
 
 import javax.annotation.Nonnull;
 import java.io.IOException;
@@ -11,41 +10,33 @@ import java.io.IOException;
  * @auhtor Johannes Donath <johannesd@evil-co.com>
  * @copyright Copyright (C) 2014 Evil-Co <http://www.evil-co.org>
  */
-public class TagByteArray extends AbstractTag {
+public class TagFloat extends AbstractTag {
 
 	/**
 	 * Stores the tag value.
 	 */
-	protected byte[] value;
+	protected float value;
 
 	/**
-	 * Constructs a new TagByteArray.
+	 * Constructs a new TagFloat.
 	 * @param name
 	 * @param value
 	 */
-	public TagByteArray (@Nonnull String name, @Nonnull byte[] value) {
+	public TagFloat (@Nonnull String name, float value) {
 		super (name);
 		this.setValue (value);
 	}
 
 	/**
-	 * Constructs a new TagByteArray.
+	 * Constructs a new TagFloat.
 	 * @param inputStream
 	 * @param anonymous
 	 * @throws IOException
 	 */
-	public TagByteArray (@Nonnull NBTInputStream inputStream, boolean anonymous) throws IOException {
+	public TagFloat (@Nonnull NBTInputStream inputStream, boolean anonymous) throws IOException {
 		super (inputStream, anonymous);
 
-		// read size
-		int size = inputStream.readInt ();
-
-		// read data
-		byte[] data = new byte[size];
-		inputStream.readFully (data);
-
-		// store data
-		this.setValue (data);
+		this.setValue (inputStream.readFloat ());
 	}
 
 	/**
@@ -53,27 +44,23 @@ public class TagByteArray extends AbstractTag {
 	 */
 	@Override
 	public byte getTagID () {
-		return TagType.BYTE_ARRAY.typeID;
+		return TagType.FLOAT.typeID;
 	}
 
 	/**
 	 * Returns the tag value.
 	 * @return
 	 */
-	public byte[] getValue () {
+	public float getValue () {
 		return this.value;
 	}
 
 	/**
 	 * Sets a new tag value.
-	 * @param b
+	 * @param f
 	 */
-	public void setValue (@Nonnull byte[] b) {
-		// check arguments
-		Preconditions.checkNotNull (b, "b");
-
-		// save value
-		this.value = b;
+	public void setValue (float f) {
+		this.value = f;
 	}
 
 	/**
@@ -83,10 +70,7 @@ public class TagByteArray extends AbstractTag {
 	public void write (NBTOutputStream outputStream, boolean anonymous) throws IOException {
 		super.write (outputStream, anonymous);
 
-		// write size
-		outputStream.writeInt (this.value.length);
-
-		// write data
-		outputStream.write (this.value);
+		// write value
+		outputStream.writeFloat (this.value);
 	}
 }

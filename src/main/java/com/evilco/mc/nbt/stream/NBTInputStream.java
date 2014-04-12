@@ -1,8 +1,7 @@
 package com.evilco.mc.nbt.stream;
 
-import com.evilco.mc.nbt.ITag;
-import com.evilco.mc.nbt.TagCompound;
-import com.evilco.mc.nbt.TagType;
+import com.evilco.mc.nbt.tag.ITag;
+import com.evilco.mc.nbt.tag.TagType;
 
 import java.io.DataInputStream;
 import java.io.IOException;

@@ -1,4 +1,4 @@
-package com.evilco.mc.nbt;
+package com.evilco.mc.nbt.tag;
 
 import com.evilco.mc.nbt.stream.NBTInputStream;
 import com.evilco.mc.nbt.stream.NBTOutputStream;
@@ -10,41 +10,33 @@ import java.io.IOException;
  * @auhtor Johannes Donath <johannesd@evil-co.com>
  * @copyright Copyright (C) 2014 Evil-Co <http://www.evil-co.org>
  */
-public class TagString extends AbstractTag {
+public class TagDouble extends AbstractTag {
 
 	/**
 	 * Stores the tag value.
 	 */
-	protected String value;
+	protected double value;
 
 	/**
-	 * Constructs a new TagString.
+	 * Constructs a new TagDouble.
 	 * @param name
 	 * @param value
 	 */
-	public TagString (@Nonnull String name, @Nonnull String value) {
+	public TagDouble (@Nonnull String name, double value) {
 		super (name);
 		this.setValue (value);
 	}
 
 	/**
-	 * Constructs a new TagString.
+	 * Constructs a new TagDouble.
 	 * @param inputStream
 	 * @param anonymous
 	 * @throws IOException
 	 */
-	public TagString (@Nonnull NBTInputStream inputStream, boolean anonymous) throws IOException {
+	public TagDouble (@Nonnull NBTInputStream inputStream, boolean anonymous) throws IOException {
 		super (inputStream, anonymous);
 
-		// read size
-		int size = inputStream.readShort ();
-
-		// read bytes
-		byte[] data = new byte[size];
-		inputStream.readFully (data);
-
-		// store value
-		this.setValue (new String (data, ITag.STRING_CHARSET));
+		this.setValue (inputStream.readDouble ());
 	}
 
 	/**
@@ -52,23 +44,23 @@ public class TagString extends AbstractTag {
 	 */
 	@Override
 	public byte getTagID () {
-		return TagType.STRING.typeID;
+		return TagType.DOUBLE.typeID;
 	}
 
 	/**
 	 * Returns the tag value.
 	 * @return
 	 */
-	public String getValue () {
+	public double getValue () {
 		return this.value;
 	}
 
 	/**
 	 * Sets a new tag value.
-	 * @param s
+	 * @param d
 	 */
-	public void setValue (@Nonnull String s) {
-		this.value = s;
+	public void setValue (double d) {
+		this.value = d;
 	}
 
 	/**
@@ -78,10 +70,7 @@ public class TagString extends AbstractTag {
 	public void write (NBTOutputStream outputStream, boolean anonymous) throws IOException {
 		super.write (outputStream, anonymous);
 
-		// write length
-		outputStream.writeShort (this.value.length ());
-
-		// write string
-		outputStream.write (this.value.getBytes (ITag.STRING_CHARSET));
+		// write double
+		outputStream.writeDouble (this.value);
 	}
 }

@@ -1,4 +1,4 @@
-package com.evilco.mc.nbt;
+package com.evilco.mc.nbt.tag;
 
 import com.evilco.mc.nbt.stream.NBTInputStream;
 import com.evilco.mc.nbt.stream.NBTOutputStream;
@@ -6,15 +6,9 @@ import com.google.common.base.Preconditions;
 import com.google.common.collect.ImmutableMap;
 
 import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
-import java.io.DataInputStream;
 import java.io.IOException;
-import java.io.OutputStream;
-import java.lang.reflect.Constructor;
-import java.nio.ByteBuffer;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.TreeMap;
 
 /**
  * @auhtor Johannes Donath <johannesd@evil-co.com>

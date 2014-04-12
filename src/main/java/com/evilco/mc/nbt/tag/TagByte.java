@@ -1,4 +1,4 @@
-package com.evilco.mc.nbt;
+package com.evilco.mc.nbt.tag;
 
 import com.evilco.mc.nbt.stream.NBTInputStream;
 import com.evilco.mc.nbt.stream.NBTOutputStream;
@@ -10,33 +10,34 @@ import java.io.IOException;
  * @auhtor Johannes Donath <johannesd@evil-co.com>
  * @copyright Copyright (C) 2014 Evil-Co <http://www.evil-co.org>
  */
-public class TagDouble extends AbstractTag {
+public class TagByte extends AbstractTag {
 
 	/**
-	 * Stores the tag value.
+	 * Stores the byte value.
 	 */
-	protected double value;
+	protected byte value;
 
 	/**
-	 * Constructs a new TagDouble.
+	 * Constructs a new TagByte.
 	 * @param name
 	 * @param value
 	 */
-	public TagDouble (@Nonnull String name, double value) {
+	public TagByte (@Nonnull String name, byte value) {
 		super (name);
 		this.setValue (value);
 	}
 
 	/**
-	 * Constructs a new TagDouble.
+	 * Constructs a new TagByte.
 	 * @param inputStream
 	 * @param anonymous
 	 * @throws IOException
 	 */
-	public TagDouble (@Nonnull NBTInputStream inputStream, boolean anonymous) throws IOException {
+	public TagByte (@Nonnull NBTInputStream inputStream, boolean anonymous) throws IOException {
 		super (inputStream, anonymous);
 
-		this.setValue (inputStream.readDouble ());
+		// read value
+		this.setValue (inputStream.readByte ());
 	}
 
 	/**
@@ -44,23 +45,23 @@ public class TagDouble extends AbstractTag {
 	 */
 	@Override
 	public byte getTagID () {
-		return TagType.DOUBLE.typeID;
+		return TagType.BYTE.typeID;
 	}
 
 	/**
-	 * Returns the tag value.
+	 * Returns the current tag value.
 	 * @return
 	 */
-	public double getValue () {
+	public byte getValue () {
 		return this.value;
 	}
 
 	/**
-	 * Sets a new tag value.
-	 * @param d
+	 * Sets a new byte value.
+	 * @param b
 	 */
-	public void setValue (double d) {
-		this.value = d;
+	public void setValue (byte b) {
+		this.value = b;
 	}
 
 	/**
@@ -70,7 +71,7 @@ public class TagDouble extends AbstractTag {
 	public void write (NBTOutputStream outputStream, boolean anonymous) throws IOException {
 		super.write (outputStream, anonymous);
 
-		// write double
-		outputStream.writeDouble (this.value);
+		// write value
+		outputStream.write (this.getValue ());
 	}
 }

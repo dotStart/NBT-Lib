@@ -1,44 +1,42 @@
-package com.evilco.mc.nbt;
+package com.evilco.mc.nbt.tag;
 
 import com.evilco.mc.nbt.stream.NBTInputStream;
 import com.evilco.mc.nbt.stream.NBTOutputStream;
 
 import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
 import java.io.IOException;
 
 /**
  * @auhtor Johannes Donath <johannesd@evil-co.com>
  * @copyright Copyright (C) 2014 Evil-Co <http://www.evil-co.org>
  */
-public class TagByte extends AbstractTag {
+public class TagInteger extends AbstractTag {
 
 	/**
-	 * Stores the byte value.
+	 * Stores the tag value.
 	 */
-	protected byte value;
+	protected int value;
 
 	/**
-	 * Constructs a new TagByte.
+	 * Constructs a new TagInteger.
 	 * @param name
 	 * @param value
 	 */
-	public TagByte (@Nonnull String name, byte value) {
+	public TagInteger (@Nonnull String name, int value) {
 		super (name);
 		this.setValue (value);
 	}
 
 	/**
-	 * Constructs a new TagByte.
+	 * Constructs a new TagInteger.
 	 * @param inputStream
 	 * @param anonymous
 	 * @throws IOException
 	 */
-	public TagByte (@Nonnull NBTInputStream inputStream, boolean anonymous) throws IOException {
+	public TagInteger (@Nonnull NBTInputStream inputStream, boolean anonymous) throws IOException {
 		super (inputStream, anonymous);
 
-		// read value
-		this.setValue (inputStream.readByte ());
+		this.setValue (inputStream.readInt ());
 	}
 
 	/**
@@ -46,23 +44,23 @@ public class TagByte extends AbstractTag {
 	 */
 	@Override
 	public byte getTagID () {
-		return TagType.BYTE.typeID;
+		return TagType.INTEGER.typeID;
 	}
 
 	/**
-	 * Returns the current tag value.
+	 * Returns the tag value.
 	 * @return
 	 */
-	public byte getValue () {
+	public int getValue () {
 		return this.value;
 	}
 
 	/**
-	 * Sets a new byte value.
-	 * @param b
+	 * Sets a new tag value.
+	 * @param i
 	 */
-	public void setValue (byte b) {
-		this.value = b;
+	public void setValue (int i) {
+		this.value = i;
 	}
 
 	/**
@@ -73,6 +71,6 @@ public class TagByte extends AbstractTag {
 		super.write (outputStream, anonymous);
 
 		// write value
-		outputStream.write (this.getValue ());
+		outputStream.writeInt (this.value);
 	}
 }

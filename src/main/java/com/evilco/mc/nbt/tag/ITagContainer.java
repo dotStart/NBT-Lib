@@ -1,7 +1,6 @@
-package com.evilco.mc.nbt;
+package com.evilco.mc.nbt.tag;
 
 import javax.annotation.Nonnull;
-import java.io.OutputStream;
 
 /**
  * @auhtor Johannes Donath <johannesd@evil-co.com>

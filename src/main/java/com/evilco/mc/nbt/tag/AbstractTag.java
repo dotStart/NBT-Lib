@@ -1,4 +1,4 @@
-package com.evilco.mc.nbt;
+package com.evilco.mc.nbt.tag;
 
 import com.evilco.mc.nbt.stream.NBTInputStream;
 import com.evilco.mc.nbt.stream.NBTOutputStream;
@@ -6,7 +6,6 @@ import com.google.common.base.Preconditions;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
-import java.io.DataInputStream;
 import java.io.IOException;
 
 /**
@@ -51,7 +50,7 @@ public abstract class AbstractTag implements ITag {
 
 			// read name
 			inputStream.readFully (nameBytes);
-			this.setName (new String (nameBytes, ITag.STRING_CHARSET));
+			this.setName (new String (nameBytes, STRING_CHARSET));
 		}
 	}
 
@@ -68,7 +67,7 @@ public abstract class AbstractTag implements ITag {
 	 */
 	@Override
 	public byte[] getNameBytes () {
-		return this.name.getBytes (ITag.STRING_CHARSET);
+		return this.name.getBytes (STRING_CHARSET);
 	}
 
 	/**

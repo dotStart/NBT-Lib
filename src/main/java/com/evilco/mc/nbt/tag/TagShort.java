@@ -1,4 +1,4 @@
-package com.evilco.mc.nbt;
+package com.evilco.mc.nbt.tag;
 
 import com.evilco.mc.nbt.stream.NBTInputStream;
 import com.evilco.mc.nbt.stream.NBTOutputStream;
@@ -10,34 +10,34 @@ import java.io.IOException;
  * @auhtor Johannes Donath <johannesd@evil-co.com>
  * @copyright Copyright (C) 2014 Evil-Co <http://www.evil-co.org>
  */
-public class TagLong extends AbstractTag {
+public class TagShort extends AbstractTag {
 
 	/**
 	 * Stores the tag value.
 	 */
-	protected long value;
+	protected short value;
 
 	/**
-	 * Constructs a new TagLong.
+	 * Constructs a new TagShort.
 	 * @param name
 	 * @param value
 	 */
-	public TagLong (@Nonnull String name, long value) {
+	public TagShort (@Nonnull String name, short value) {
 		super (name);
 		this.setValue (value);
 	}
 
 	/**
-	 * Constructs a new TagLong.
+	 * Constructs a new TagShort.
 	 * @param inputStream
 	 * @param anonymous
 	 * @throws IOException
 	 */
-	public TagLong (@Nonnull NBTInputStream inputStream, boolean anonymous) throws IOException {
+	public TagShort (@Nonnull NBTInputStream inputStream, boolean anonymous) throws IOException {
 		super (inputStream, anonymous);
 
 		// read value
-		this.setValue (inputStream.readLong ());
+		this.setValue (inputStream.readShort ());
 	}
 
 	/**
@@ -45,24 +45,23 @@ public class TagLong extends AbstractTag {
 	 */
 	@Override
 	public byte getTagID () {
-		return TagType.LONG.typeID;
+		return TagType.SHORT.typeID;
 	}
 
 	/**
 	 * Returns the tag value.
 	 * @return
 	 */
-	public long getValue () {
+	public short getValue () {
 		return this.value;
 	}
 
 	/**
 	 * Sets a new tag value.
-	 * @param l
-	 * @return
+	 * @param s
 	 */
-	public void setValue (long l) {
-		this.value = l;
+	public void setValue (short s) {
+		this.value = s;
 	}
 
 	/**
@@ -73,6 +72,6 @@ public class TagLong extends AbstractTag {
 		super.write (outputStream, anonymous);
 
 		// write value
-		outputStream.writeLong (this.value);
+		outputStream.writeShort (this.value);
 	}
 }

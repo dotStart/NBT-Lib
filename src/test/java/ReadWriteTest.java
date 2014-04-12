@@ -1,6 +1,6 @@
-import com.evilco.mc.nbt.*;
 import com.evilco.mc.nbt.stream.NBTInputStream;
 import com.evilco.mc.nbt.stream.NBTOutputStream;
+import com.evilco.mc.nbt.tag.*;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;

@@ -1,6 +1,6 @@
 package com.evilco.mc.nbt.stream;
 
-import com.evilco.mc.nbt.ITag;
+import com.evilco.mc.nbt.tag.ITag;
 
 import java.io.DataOutputStream;
 import java.io.IOException;

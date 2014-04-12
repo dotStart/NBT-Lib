@@ -1,4 +1,4 @@
-package com.evilco.mc.nbt;
+package com.evilco.mc.nbt.tag;
 
 import javax.annotation.Nonnull;
 import java.util.Map;

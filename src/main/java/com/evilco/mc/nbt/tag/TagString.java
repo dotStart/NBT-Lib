@@ -1,4 +1,4 @@
-package com.evilco.mc.nbt;
+package com.evilco.mc.nbt.tag;
 
 import com.evilco.mc.nbt.stream.NBTInputStream;
 import com.evilco.mc.nbt.stream.NBTOutputStream;
@@ -10,34 +10,41 @@ import java.io.IOException;
  * @auhtor Johannes Donath <johannesd@evil-co.com>
  * @copyright Copyright (C) 2014 Evil-Co <http://www.evil-co.org>
  */
-public class TagShort extends AbstractTag {
+public class TagString extends AbstractTag {
 
 	/**
 	 * Stores the tag value.
 	 */
-	protected short value;
+	protected String value;
 
 	/**
-	 * Constructs a new TagShort.
+	 * Constructs a new TagString.
 	 * @param name
 	 * @param value
 	 */
-	public TagShort (@Nonnull String name, short value) {
+	public TagString (@Nonnull String name, @Nonnull String value) {
 		super (name);
 		this.setValue (value);
 	}
 
 	/**
-	 * Constructs a new TagShort.
+	 * Constructs a new TagString.
 	 * @param inputStream
 	 * @param anonymous
 	 * @throws IOException
 	 */
-	public TagShort (@Nonnull NBTInputStream inputStream, boolean anonymous) throws IOException {
+	public TagString (@Nonnull NBTInputStream inputStream, boolean anonymous) throws IOException {
 		super (inputStream, anonymous);
 
-		// read value
-		this.setValue (inputStream.readShort ());
+		// read size
+		int size = inputStream.readShort ();
+
+		// read bytes
+		byte[] data = new byte[size];
+		inputStream.readFully (data);
+
+		// store value
+		this.setValue (new String (data, ITag.STRING_CHARSET));
 	}
 
 	/**
@@ -45,14 +52,14 @@ public class TagShort extends AbstractTag {
 	 */
 	@Override
 	public byte getTagID () {
-		return TagType.SHORT.typeID;
+		return TagType.STRING.typeID;
 	}
 
 	/**
 	 * Returns the tag value.
 	 * @return
 	 */
-	public short getValue () {
+	public String getValue () {
 		return this.value;
 	}
 
@@ -60,7 +67,7 @@ public class TagShort extends AbstractTag {
 	 * Sets a new tag value.
 	 * @param s
 	 */
-	public void setValue (short s) {
+	public void setValue (@Nonnull String s) {
 		this.value = s;
 	}
 
@@ -71,7 +78,10 @@ public class TagShort extends AbstractTag {
 	public void write (NBTOutputStream outputStream, boolean anonymous) throws IOException {
 		super.write (outputStream, anonymous);
 
-		// write value
-		outputStream.writeShort (this.value);
+		// write length
+		outputStream.writeShort (this.value.length ());
+
+		// write string
+		outputStream.write (this.value.getBytes (ITag.STRING_CHARSET));
 	}
 }
