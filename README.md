@@ -2,6 +2,11 @@ Java NBT Library [![Build Status](http://assets.evil-co.com/build/NBTLIB-MASTER.
 ===============
 The NBT Java library provides a simple read and write API for Minecraft NBT files and streams.
 
+Examples
+--------
+
+You can find basic usage examples for the library in the ```src/test/java``` directory.
+
 Compiling
 ---------
 
