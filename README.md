@@ -13,6 +13,29 @@ simply run:
 Maven will automatically download dependencies for you. Note: For that to work,
 be sure to add Maven to your "PATH".
 
+Maven
+-----
+
+You can include this library into your projects easily by adding the following repository and dependency
+to your project:
+
+	<!- ... -->
+
+	<repository>
+		<id>evil-co</id>
+		<url>http://nexus.evil-co.org/content/repositories/free/</url>
+	</repository>
+
+	<!- ... -->
+
+	<dependency>
+		<groupId>com.evilco.mc</groupId>
+		<artifactId>nbt</artifactId>
+		<version>1.0</version>
+	</dependency>
+
+	<!- ... -->
+
 Contributing
 ------------
 
