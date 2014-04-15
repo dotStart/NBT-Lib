@@ -47,6 +47,9 @@ public class TagIntegerArray extends AbstractTag {
 		for (int i = 0; i < size; i++) {
 			data[i] = inputStream.readInt ();
 		}
+		
+		// 
+		this.values = data;
 	}
 
 	/**
