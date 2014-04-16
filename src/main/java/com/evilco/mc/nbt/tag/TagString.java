@@ -77,11 +77,13 @@ public class TagString extends AbstractTag {
 	@Override
 	public void write (NbtOutputStream outputStream, boolean anonymous) throws IOException {
 		super.write (outputStream, anonymous);
-
-		// write length
-		outputStream.writeShort (this.value.length ());
+	
+		// write length - since getBytes can produce an array of a different length than the original string
+		// the length of the output array is the one to write
+		byte[] outputBytes = this.value.getBytes (ITag.STRING_CHARSET);
+		outputStream.writeShort (outputBytes.length);
 
 		// write string
-		outputStream.write (this.value.getBytes (ITag.STRING_CHARSET));
+		outputStream.write (outputBytes);
 	}
 }
