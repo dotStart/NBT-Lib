@@ -7,6 +7,13 @@ Examples
 
 You can find basic usage examples for the library in the ```src/test/java``` directory.
 
+Bug Reporting
+-------------
+
+Please report bugs in our [Bugtracker](https://evilco.atlassian.net/browse/NBTLIB/). If you don't want to wait for them to
+fixed by one of our project members you can also submit a bugfix on GitHub with the pull request feature (please refer
+to the contribution section for more information and notices).
+
 Compiling
 ---------
 
