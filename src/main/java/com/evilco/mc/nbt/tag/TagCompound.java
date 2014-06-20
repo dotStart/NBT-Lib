@@ -3,11 +3,13 @@ package com.evilco.mc.nbt.tag;
 import com.evilco.mc.nbt.stream.NbtInputStream;
 import com.evilco.mc.nbt.stream.NbtOutputStream;
 import com.google.common.base.Preconditions;
+import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableMap;
 
 import javax.annotation.Nonnull;
 import java.io.IOException;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -90,6 +92,81 @@ public class TagCompound extends AbstractTag implements INamedTagContainer {
 					+ ", but is of type " + tag.getClass().getSimpleName());
 
 		return (T) tag;
+	}
+	
+	public TagCompound getCompound(String name) throws UnexpectedTagTypeException, TagNotFoundException {
+		return getTag(name, TagCompound.class);
+	}
+	
+	public int getInteger(String name) throws UnexpectedTagTypeException, TagNotFoundException {
+		return getTag(name, TagInteger.class).getValue();
+	}
+	
+	public short getShort(String name) throws UnexpectedTagTypeException, TagNotFoundException {
+		return getTag(name, TagShort.class).getValue();
+	}
+	
+	public byte getByte(String name) throws UnexpectedTagTypeException, TagNotFoundException {
+		return getTag(name, TagByte.class).getValue();
+	}
+	
+	public long getLong(String name) throws UnexpectedTagTypeException, TagNotFoundException {
+		return getTag(name, TagLong.class).getValue();
+	}
+	
+	public double getDouble(String name) throws UnexpectedTagTypeException, TagNotFoundException {
+		return getTag(name, TagDouble.class).getValue();
+	}
+	
+	public float getFloat(String name) throws UnexpectedTagTypeException, TagNotFoundException {
+		return getTag(name, TagFloat.class).getValue();
+	}
+	
+	public String getString(String name) throws UnexpectedTagTypeException, TagNotFoundException {
+		return getTag(name, TagString.class).getValue();
+	}
+	
+	public <T extends ITag> List<T> getList(String name, Class<T> itemClass)
+			throws UnexpectedTagTypeException, TagNotFoundException {
+		return getTag(name, TagList.class).getTags(itemClass);
+	}
+	
+	public int[] getIntegerArray(String name) throws UnexpectedTagTypeException, TagNotFoundException {
+		return getTag(name, TagIntegerArray.class).getValues();
+	}
+	
+	public byte[] getByteArray(String name) throws UnexpectedTagTypeException, TagNotFoundException {
+		return getTag(name, TagByteArray.class).getValue();
+	}
+	
+	public String[] getStringArray(String name)
+			throws UnexpectedTagTypeException, TagNotFoundException {
+		List<TagString> tags = getList(name, TagString.class);
+		String[] array = new String[tags.size()];
+		for (int i = 0; i < tags.size(); i++) {
+			array[i] = tags.get(i).getValue();
+		}
+		return array;
+	}
+	
+	public double[] getDoubleArray(String name)
+			throws UnexpectedTagTypeException, TagNotFoundException {
+		List<TagDouble> tags = getList(name, TagDouble.class);
+		double[] array = new double[tags.size()];
+		for (int i = 0; i < tags.size(); i++) {
+			array[i] = tags.get(i).getValue();
+		}
+		return array;
+	}
+	
+	public float[] getFloatArray(String name)
+			throws UnexpectedTagTypeException, TagNotFoundException {
+		List<TagFloat> tags = getList(name, TagFloat.class);
+		float[] array = new float[tags.size()];
+		for (int i = 0; i < tags.size(); i++) {
+			array[i] = tags.get(i).getValue();
+		}
+		return array;
 	}
 
 	/**
