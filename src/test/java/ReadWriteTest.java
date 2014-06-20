@@ -59,9 +59,22 @@ public class ReadWriteTest {
 		NbtInputStream nbtInputStream = new NbtInputStream (inputStream);
 
 		// read data
-		ITag tag = nbtInputStream.readTag ();
+		TagCompound tag = (TagCompound)nbtInputStream.readTag ();
 
 		// verify output
 		Assert.assertNotNull (tag);
+		
+		Assert.assertEquals(4.2d, tag.getDouble("doubleTag"), 0.1);
+		Assert.assertEquals(4.2f, tag.getFloat("floatTag"), 0.1);
+		Assert.assertEquals(42, tag.getInteger("integerTag"));
+		Assert.assertEquals(42, tag.getLong("longTag"));
+		Assert.assertEquals(42, tag.getShort("shortTag"));
+		Assert.assertEquals("Bananrama", tag.getString("stringTag"));
+		Assert.assertArrayEquals(new byte[] { 0, 1, 2, 3 }, tag.getByteArray("byteArrayTag"));
+		Assert.assertArrayEquals(new int[] { 21, 42, 84 }, tag.getIntegerArray("integerArrayTag"));
+		Assert.assertArrayEquals(new String[] { "Hello", "World!" }, tag.getStringArray("listTag"));
+		TagCompound inner = tag.getCompound("compoundTag");
+		Assert.assertEquals("Bananrama", inner.getString("name"));
+		
 	}
 }
