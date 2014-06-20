@@ -76,6 +76,25 @@ public class TagCompound extends AbstractTag implements INamedTagContainer {
 	/**
 	 * {@inheritDoc}
 	 */
+	@SuppressWarnings("unchecked")
+	public <T extends ITag> T getTag(String name, Class<T> tagClass)
+			throws UnexpectedTagTypeException, TagNotFoundException {
+		ITag tag = getTag(name);
+
+		if (tag == null)
+			throw new TagNotFoundException(
+					"The compound tag is missing a " + name + " entry");
+		if (!tagClass.isInstance(tag))
+			throw new UnexpectedTagTypeException("The compound entry " + name
+					+ " should be of type " + tagClass.getSimpleName()
+					+ ", but is of type " + tag.getClass().getSimpleName());
+
+		return (T) tag;
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	public Map<String, ITag> getTags () {
 		return (new ImmutableMap.Builder<String, ITag> ().putAll (this.tags)).build ();
