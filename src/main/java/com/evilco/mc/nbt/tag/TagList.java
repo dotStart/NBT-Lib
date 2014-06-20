@@ -93,6 +93,24 @@ public class TagList extends AbstractTag implements IAnonymousTagContainer {
 	/**
 	 * {@inheritDoc}
 	 */
+	@SuppressWarnings("unchecked")
+	public <T extends ITag> List<T> getTags(Class<T> tagClass) throws UnexpectedTagTypeException {
+		ImmutableList.Builder<T> builder = new ImmutableList.Builder<T>();
+		for (ITag tag : tagList) {
+			if (!tagClass.isInstance(tag))
+				throw new UnexpectedTagTypeException(
+						"The list entry should be of type "
+								+ tagClass.getSimpleName()
+								+ ", but is of type "
+								+ tag.getClass().getSimpleName());
+			builder.add((T) tag);
+		}
+		return builder.build();
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	public byte getTagID () {
 		return TagType.LIST.typeID;
