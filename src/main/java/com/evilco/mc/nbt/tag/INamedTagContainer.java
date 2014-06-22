@@ -14,6 +14,17 @@ public interface INamedTagContainer extends ITagContainer {
 	 * @param name The tag name.
 	 */
 	public ITag getTag (@Nonnull String name);
+	
+	/**
+	 * Returns the tag associated with the given name, ensuring its type is as expected
+	 * @param name The tag name
+	 * @param tagClass The expected tag type
+	 * @return the tag
+	 * @throws UnexpectedTagTypeException The tag is found, but of different type than expected
+	 * @throws TagNotFoundException There is no tag with the given name in this container
+	 */
+	public <T extends ITag> T getTag(String name, Class<T> tagClass) 
+			throws UnexpectedTagTypeException, TagNotFoundException;
 
 	/**
 	 * Returns a named map of all tags.
