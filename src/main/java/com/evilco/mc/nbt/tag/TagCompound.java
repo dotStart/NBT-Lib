@@ -3,7 +3,6 @@ package com.evilco.mc.nbt.tag;
 import com.evilco.mc.nbt.stream.NbtInputStream;
 import com.evilco.mc.nbt.stream.NbtOutputStream;
 import com.google.common.base.Preconditions;
-import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableMap;
 
 import javax.annotation.Nonnull;
@@ -94,51 +93,138 @@ public class TagCompound extends AbstractTag implements INamedTagContainer {
 		return (T) tag;
 	}
 	
+	/**
+	 * Gets the tag of the given name and verifies that it is a compound tag
+	 * @param name the tag's name
+	 * @return the compound tag
+	 * @throws UnexpectedTagTypeException the tag exists, but is not a compound tag
+	 * @throws TagNotFoundException the tag does not exist
+	 */
 	public TagCompound getCompound(String name) throws UnexpectedTagTypeException, TagNotFoundException {
 		return getTag(name, TagCompound.class);
 	}
-	
+
+	/**
+	 * Verifies that the tag of the given name is an integer tag and gets its value
+	 * @param name the tag's name
+	 * @return the tag's value
+	 * @throws UnexpectedTagTypeException the tag exists, but is not an integer tag
+	 * @throws TagNotFoundException the tag does not exist
+	 */
 	public int getInteger(String name) throws UnexpectedTagTypeException, TagNotFoundException {
 		return getTag(name, TagInteger.class).getValue();
 	}
-	
+
+	/**
+	 * Verifies that the tag of the given name is an short tag and gets its value
+	 * @param name the tag's name
+	 * @return the tag's value
+	 * @throws UnexpectedTagTypeException the tag exists, but is not an short tag
+	 * @throws TagNotFoundException the tag does not exist
+	 */
 	public short getShort(String name) throws UnexpectedTagTypeException, TagNotFoundException {
 		return getTag(name, TagShort.class).getValue();
 	}
-	
+
+	/**
+	 * Verifies that the tag of the given name is an byte tag and gets its value
+	 * @param name the tag's name
+	 * @return the tag's value
+	 * @throws UnexpectedTagTypeException the tag exists, but is not an byte tag
+	 * @throws TagNotFoundException the tag does not exist
+	 */
 	public byte getByte(String name) throws UnexpectedTagTypeException, TagNotFoundException {
 		return getTag(name, TagByte.class).getValue();
 	}
-	
+
+	/**
+	 * Verifies that the tag of the given name is an long tag and gets its value
+	 * @param name the tag's name
+	 * @return the tag's value
+	 * @throws UnexpectedTagTypeException the tag exists, but is not an long tag
+	 * @throws TagNotFoundException the tag does not exist
+	 */
 	public long getLong(String name) throws UnexpectedTagTypeException, TagNotFoundException {
 		return getTag(name, TagLong.class).getValue();
 	}
-	
+
+	/**
+	 * Verifies that the tag of the given name is an double tag and gets its value
+	 * @param name the tag's name
+	 * @return the tag's value
+	 * @throws UnexpectedTagTypeException the tag exists, but is not an double tag
+	 * @throws TagNotFoundException the tag does not exist
+	 */
 	public double getDouble(String name) throws UnexpectedTagTypeException, TagNotFoundException {
 		return getTag(name, TagDouble.class).getValue();
 	}
-	
+
+	/**
+	 * Verifies that the tag of the given name is an float tag and gets its value
+	 * @param name the tag's name
+	 * @return the tag's value
+	 * @throws UnexpectedTagTypeException the tag exists, but is not an float tag
+	 * @throws TagNotFoundException the tag does not exist
+	 */
 	public float getFloat(String name) throws UnexpectedTagTypeException, TagNotFoundException {
 		return getTag(name, TagFloat.class).getValue();
 	}
-	
+
+	/**
+	 * Verifies that the tag of the given name is an string tag and gets its value
+	 * @param name the tag's name
+	 * @return the tag's value
+	 * @throws UnexpectedTagTypeException the tag exists, but is not an string tag
+	 * @throws TagNotFoundException the tag does not exist
+	 */
 	public String getString(String name) throws UnexpectedTagTypeException, TagNotFoundException {
 		return getTag(name, TagString.class).getValue();
 	}
 	
+	/**
+	 * Gets the contents of the list tag and checks its item types
+	 * @param name the tag's name
+	 * @param itemClass the type the list items are expected to be of
+	 * @return the contents of the list tag
+	 * @throws UnexpectedTagTypeException the tag exists, but is not a list tag - or - 
+	 *   the contents of the list tag are not of the expected type
+	 * @throws TagNotFoundException the list tag does not exist
+	 */
 	public <T extends ITag> List<T> getList(String name, Class<T> itemClass)
 			throws UnexpectedTagTypeException, TagNotFoundException {
 		return getTag(name, TagList.class).getTags(itemClass);
 	}
-	
+
+	/**
+	 * Verifies that the tag of the given name is an integer array tag and gets its value
+	 * @param name the tag's name
+	 * @return the tag's value
+	 * @throws UnexpectedTagTypeException the tag exists, but is not an integer array tag
+	 * @throws TagNotFoundException the tag does not exist
+	 */
 	public int[] getIntegerArray(String name) throws UnexpectedTagTypeException, TagNotFoundException {
 		return getTag(name, TagIntegerArray.class).getValues();
 	}
-	
+
+	/**
+	 * Verifies that the tag of the given name is an byte array tag and gets its value
+	 * @param name the tag's name
+	 * @return the tag's value
+	 * @throws UnexpectedTagTypeException the tag exists, but is not an byte array tag
+	 * @throws TagNotFoundException the tag does not exist
+	 */
 	public byte[] getByteArray(String name) throws UnexpectedTagTypeException, TagNotFoundException {
 		return getTag(name, TagByteArray.class).getValue();
 	}
-	
+
+	/**
+	 * Gets the contents of the list tag and verifies that its items are string tags
+	 * @param name the tag's name
+	 * @return the values of the list tag's item tags
+	 * @throws UnexpectedTagTypeException the tag exists, but is not a list tag - or - 
+	 *   the contents of the list tag are not string tags
+	 * @throws TagNotFoundException the list tag does not exist
+	 */
 	public String[] getStringArray(String name)
 			throws UnexpectedTagTypeException, TagNotFoundException {
 		List<TagString> tags = getList(name, TagString.class);
@@ -148,7 +234,15 @@ public class TagCompound extends AbstractTag implements INamedTagContainer {
 		}
 		return array;
 	}
-	
+
+	/**
+	 * Gets the contents of the list tag and verifies that its items are double tags
+	 * @param name the tag's name
+	 * @return the values of the list tag's item tags
+	 * @throws UnexpectedTagTypeException the tag exists, but is not a list tag - or - 
+	 *   the contents of the list tag are not double tags
+	 * @throws TagNotFoundException the list tag does not exist
+	 */
 	public double[] getDoubleArray(String name)
 			throws UnexpectedTagTypeException, TagNotFoundException {
 		List<TagDouble> tags = getList(name, TagDouble.class);
@@ -158,7 +252,15 @@ public class TagCompound extends AbstractTag implements INamedTagContainer {
 		}
 		return array;
 	}
-	
+
+	/**
+	 * Gets the contents of the list tag and verifies that its items are float tags
+	 * @param name the tag's name
+	 * @return the values of the list tag's item tags
+	 * @throws UnexpectedTagTypeException the tag exists, but is not a list tag - or - 
+	 *   the contents of the list tag are not float tags
+	 * @throws TagNotFoundException the list tag does not exist
+	 */
 	public float[] getFloatArray(String name)
 			throws UnexpectedTagTypeException, TagNotFoundException {
 		List<TagFloat> tags = getList(name, TagFloat.class);
