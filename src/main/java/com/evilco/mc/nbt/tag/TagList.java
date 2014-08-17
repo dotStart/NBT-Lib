@@ -62,11 +62,11 @@ public class TagList extends AbstractTag implements IAnonymousTagContainer {
 		// get type
 		TagType tagType = TagType.valueOf (type);
 
-		// (no data, skip)
-		if (tagType == TagType.END) return;
-
 		// read size
 		int size = inputStream.readInt ();
+
+		// (no data, skip)
+		if (tagType == TagType.END) return;
 
 		// load all elements
 		for (int i = 0; i < size; i++) {
