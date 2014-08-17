@@ -1,5 +1,8 @@
 package com.evilco.mc.nbt.tag;
 
+import com.evilco.mc.nbt.error.TagNotFoundException;
+import com.evilco.mc.nbt.error.UnexpectedTagTypeException;
+
 import javax.annotation.Nonnull;
 import java.util.Map;
 
@@ -20,8 +23,8 @@ public interface INamedTagContainer extends ITagContainer {
 	 * @param name The tag name
 	 * @param tagClass The expected tag type
 	 * @return the tag
-	 * @throws UnexpectedTagTypeException The tag is found, but of different type than expected
-	 * @throws TagNotFoundException There is no tag with the given name in this container
+	 * @throws com.evilco.mc.nbt.error.UnexpectedTagTypeException The tag is found, but of different type than expected
+	 * @throws com.evilco.mc.nbt.error.TagNotFoundException There is no tag with the given name in this container
 	 */
 	public <T extends ITag> T getTag(String name, Class<T> tagClass) 
 			throws UnexpectedTagTypeException, TagNotFoundException;
