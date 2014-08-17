@@ -20,6 +20,14 @@ public interface IAnonymousTagContainer extends ITagContainer {
 	 * @return
 	 */
 	public List<ITag> getTags ();
+	
+	/**
+	 * Gets all tags in this container, ensuring their type is as expected
+	 * @param tagClass the expected tag type of the contents
+	 * @return the tags in this container
+	 * @throws UnexpectedTagTypeException at least one tag in this container is not of the expected type
+	 */
+	public <T extends ITag> List<T> getTags(Class<T> tagClass) throws UnexpectedTagTypeException;
 
 	/**
 	 * Sets a tag.
