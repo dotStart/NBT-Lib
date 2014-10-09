@@ -27,7 +27,7 @@ public class TagList extends AbstractTag implements IAnonymousTagContainer {
 	 */
 	public TagList (@Nonnull String name) {
 		super (name);
-		this.tagList = new ArrayList<> ();
+		this.tagList = new ArrayList<ITag> ();
 	}
 
 	/**
@@ -55,7 +55,7 @@ public class TagList extends AbstractTag implements IAnonymousTagContainer {
 		super (inputStream, anonymous);
 
 		// create tagList
-		this.tagList = new ArrayList<> ();
+		this.tagList = new ArrayList<ITag> ();
 
 		// get type ID
 		byte type = inputStream.readByte ();
