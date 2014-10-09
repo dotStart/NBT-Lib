@@ -1,5 +1,7 @@
 package com.evilco.mc.nbt.tag;
 
+import com.evilco.mc.nbt.error.UnexpectedTagTypeException;
+
 import javax.annotation.Nonnull;
 import java.util.List;
 
@@ -25,7 +27,7 @@ public interface IAnonymousTagContainer extends ITagContainer {
 	 * Gets all tags in this container, ensuring their type is as expected
 	 * @param tagClass the expected tag type of the contents
 	 * @return the tags in this container
-	 * @throws UnexpectedTagTypeException at least one tag in this container is not of the expected type
+	 * @throws com.evilco.mc.nbt.error.UnexpectedTagTypeException at least one tag in this container is not of the expected type
 	 */
 	public <T extends ITag> List<T> getTags(Class<T> tagClass) throws UnexpectedTagTypeException;
 

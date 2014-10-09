@@ -64,15 +64,16 @@
 	</scm>
 
 	<!-- Distribution -->
+	<!-- Distribution -->
 	<distributionManagement>
 		<repository>
-			<id>evil-co</id>
-			<url>http://nexus.evil-co.org/content/repositories/free/</url>
+			<id>basket</id>
+			<url>http://basket.cindyscats.com/content/repositories/releases/</url>
 		</repository>
 
 		<snapshotRepository>
-			<id>evil-co</id>
-			<url>http://nexus.evil-co.org/content/repositories/free-snapshots/</url>
+			<id>basket</id>
+			<url>http://basket.cindyscats.com/content/repositories/snapshots/</url>
 		</snapshotRepository>
 	</distributionManagement>
 

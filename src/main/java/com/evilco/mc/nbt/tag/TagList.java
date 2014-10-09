@@ -1,5 +1,6 @@
 package com.evilco.mc.nbt.tag;
 
+import com.evilco.mc.nbt.error.UnexpectedTagTypeException;
 import com.evilco.mc.nbt.stream.NbtInputStream;
 import com.evilco.mc.nbt.stream.NbtOutputStream;
 import com.google.common.base.Preconditions;
@@ -62,11 +63,11 @@ public class TagList extends AbstractTag implements IAnonymousTagContainer {
 		// get type
 		TagType tagType = TagType.valueOf (type);
 
-		// (no data, skip)
-		if (tagType == TagType.END) return;
-
 		// read size
 		int size = inputStream.readInt ();
+
+		// (no data, skip)
+		if (tagType == TagType.END) return;
 
 		// load all elements
 		for (int i = 0; i < size; i++) {
@@ -105,7 +106,7 @@ public class TagList extends AbstractTag implements IAnonymousTagContainer {
 								+ tag.getClass().getSimpleName());
 			builder.add((T) tag);
 		}
-		return builder.build();
+		return builder.build ();
 	}
 
 	/**

@@ -1,4 +1,4 @@
-package com.evilco.mc.nbt.tag;
+package com.evilco.mc.nbt.error;
 
 import java.io.IOException;
 

@@ -35,7 +35,7 @@ to your project:
 
 	<repository>
 		<id>evil-co</id>
-		<url>http://nexus.evil-co.org/content/repositories/free/</url>
+		<url>http://basket.cindyscats.com/content/repositories/releases/</url>
 	</repository>
 
 	<!- ... -->
