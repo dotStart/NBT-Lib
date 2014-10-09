@@ -31,7 +31,7 @@ public class TagCompound extends AbstractTag implements INamedTagContainer {
 	public TagCompound (String name) {
 		super (name);
 
-		this.tags = new HashMap<> ();
+		this.tags = new HashMap<String, ITag> ();
 	}
 
 	/**
@@ -43,7 +43,7 @@ public class TagCompound extends AbstractTag implements INamedTagContainer {
 		super (inputStream, anonymous);
 
 		// create map
-		this.tags = new HashMap<> ();
+		this.tags = new HashMap<String, ITag> ();
 
 		// attempt to read all elements
 		do {
