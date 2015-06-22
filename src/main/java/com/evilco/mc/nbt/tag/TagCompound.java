@@ -8,6 +8,7 @@ import com.google.common.base.Preconditions;
 import com.google.common.collect.ImmutableMap;
 
 import javax.annotation.Nonnull;
+
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
@@ -272,7 +273,99 @@ public class TagCompound extends AbstractTag implements INamedTagContainer {
 		}
 		return array;
 	}
-
+	
+	/**
+	 * Appends a new named byte value to this tag by creating a new tag and adding it
+	 * @param name The name of the byte-tag to add
+	 * @param value The value to store into the new tag
+	 */
+	public void setByte(String name, byte value) {
+		this.setTag(new TagByte(name, value));
+	}
+	
+	/**
+	 * Appends a new named short value to this tag by creating a new tag and adding it
+	 * @param name The name of the short-tag to add
+	 * @param value The value to store into the new tag
+	 */
+	public void setShort(String name, short value) {
+		this.setTag(new TagShort(name, value));
+	}
+	
+	/**
+	 * Appends a new named integer value to this tag by creating a new tag and adding it
+	 * @param name The name of the int-tag to add
+	 * @param value The value to store into the new tag
+	 */
+	public void setInteger(String name, int value) {
+		this.setTag(new TagInteger(name, value));
+	}
+	
+	/**
+	 * Appends a new named long value to this tag by creating a new tag and adding it
+	 * @param name The name of the long-tag to add
+	 * @param value The value to store into the new tag
+	 */
+	public void setLong(String name, long value) {
+		this.setTag(new TagLong(name, value));
+	}
+	
+	/**
+	 * Appends a new named float value to this tag by creating a new tag and adding it
+	 * @param name The name of the float-tag to add
+	 * @param value The value to store into the new tag
+	 */
+	public void setFloat(String name, float value) {
+		this.setTag(new TagFloat(name, value));
+	}
+	
+	/**
+	 * Appends a new named double value to this tag by creating a new tag and adding it
+	 * @param name The name of the double-tag to add
+	 * @param value The value to store into the new tag
+	 */
+	public void setDouble(String name, double value) {
+		this.setTag(new TagDouble(name, value));
+	}
+	
+	/**
+	 * Appends a new named byte array to this tag by creating a new tag and adding it
+	 * @param name The name of the tag to add
+	 * @param value The value to store into the new tag
+	 */
+	public void setByteArray(String name, byte[] value) {
+		this.setTag(new TagByteArray(name, value));
+	}
+	
+	/**
+	 * Appends a new named string value to this tag by creating a new tag and adding it
+	 * @param name The name of the string-tag to add
+	 * @param value The value to store into the new tag
+	 */
+	public void setString(String name, String value) {
+		this.setTag(new TagString(name, value));
+	}
+	
+	/**
+	 * Appends a new named list to this tag by creating a new tag and adding it
+	 * @param name The name of the list to add
+	 * @param value The list to store into the new tag; the list-type must be assignable from ITag.class
+	 */
+	@SuppressWarnings("unchecked")
+	public <T extends ITag> void setList(String name, List<T> value) {
+		this.setTag(new TagList(name, (List<ITag>) value));
+	}
+	
+	/**
+	 * Appends a new named integer array to this tag by creating a new tag and adding it
+	 * @param name The name of the tag to add
+	 * @param value The value to store into the new tag
+	 */
+	public void setIntegerArray(String name, int[] value) {
+		this.setTag(new TagIntegerArray(name, value));
+	}
+	
+	
 	/**
 	 * {@inheritDoc}
 	 */
