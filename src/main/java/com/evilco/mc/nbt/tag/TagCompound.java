@@ -313,11 +313,10 @@ public class TagCompound extends AbstractTag implements INamedTagContainer {
 		// check arguments
 		Preconditions.checkNotNull (tag, "tag");
 
-		// delete previous
-		if (this.tags.containsKey (tag)) this.tags.get (tag.getName ()).setParent (null);
-
 		// store tag
-		this.tags.put (tag.getName (), tag);
+		ITag previous = this.tags.put (tag.getName (), tag);
+		// delete previous
+		previous.setParent(null);
 
 		// update parent
 		tag.setParent (this);
